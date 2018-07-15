@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Modelo.Empleado>
+
+@{
+    ViewBag.Title = "Lista de empleados";
+}
+
+<br />
+<h4>Lista de empleados</h4>
+<br />
+
+<p>
+    @Html.ActionLink("Nuevo empleado", "Create")
+</p>
+<table class="table table-responsive-sm">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayName("Apellido paterno")
+        </th>
+        <th>
+            @Html.DisplayName("Apellido materno")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Edad)
+        </th>
+        <th></th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Apellido_paterno)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Apellido_materno)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Edad)
+        </td>
+        @*<td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.Id })
+        </td>
+        <td>
+            @Html.ActionLink("Eliminar", "Delete", new { id = item.Id },
+            new { onclick = "return confirm('Está seguro que desea eliminar el empleado?');" })
+        </td>*@
+        <td>
+            <a href="/Home/Edit/@(item.Id)" class="btn btn-sm btn-outline-primary" role="button">Editar</a>
+        </td>
+
+        <td>
+            <a href="/Home/Delete/@(item.Id)" class="btn btn-sm btn-outline-danger" role="button" 
+              onclick = "return confirm('Está seguro que desea eliminar el empleado?');"  >Eliminar</a>
+        </td>
+    </tr>
+}
+
+</table>
